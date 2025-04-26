@@ -1,0 +1,238 @@
+<!DOCTYPE html><html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invitación de Cumpleaños - Chanel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #000;
+      color: white;
+      overflow-x: hidden;
+    }
+    .carta-cerrada {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: url('carta.png') no-repeat center center;
+      background-size: contain;
+    }
+    .texto-abrir {
+      margin-top: 20px;
+      font-size: 24px;
+      animation: parpadeo 2s infinite;
+    }
+    @keyframes parpadeo {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .titulo {
+      font-family: 'Great Vibes', cursive;
+      font-size: 48px;
+      margin: 20px 0;
+    }
+    .imagen {
+      width: 80%;
+      max-width: 500px;
+      margin: 20px auto;
+      display: block;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
+    .detalle {
+      font-size: 20px;
+      margin: 10px 0;
+    }
+    .boton {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px;
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 18px;
+    }
+    #cuenta-regresiva {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    #cuenta-regresiva .contador {
+      background: #fff;
+      color: #000;
+      padding: 10px;
+      border-radius: 8px;
+      width: 60px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .etiqueta-tiempo {
+      font-size: 12px;
+      color: #333;
+      margin-top: 4px;
+      display: block;
+    }
+    .animado {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+    .animado.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .mapa-embed {
+      width: 100%;
+      max-width: 600px;
+      height: 300px;
+      border: 0;
+      border-radius: 10px;
+      margin: 20px auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="carta-cerrada">
+    <div class="texto-abrir">Desliza para abrir</div>
+  </div>  <section id="inicio">
+    <h1 class="titulo animado">Ven y pasa bien en el Cumple de</h1>
+    <h2 class="titulo animado">CHANEL</h2>
+  </section> <section>
+    <section>
+      <section>
+        <video id="videoAmanecer" src="amanecer.mp4" width="300" height="300" controls autoplay style="border-radius: 15px;"></video>
+      </section>
+      
+    </section>    
+  </section>  <section>
+    <p class="detalle animado"><strong>Lugar:</strong> Sui Generis, Oruro</p>
+    <p class="detalle animado"><strong>Fecha:</strong> 3 de mayo de 2025</p>
+    <p class="detalle animado"><strong>Hora:</strong> 20:00</p>
+    <p class="detalle animado"><strong>Vestimenta:</strong> Casual Sexy</p>
+  </section>  <section>
+    <video id="miVideo" src="sui.mp4" width="300" height="300" controls style="border-radius: 15px;"></video>
+    <script>
+      const videoAmanecer = document.getElementById('videoAmanecer');
+      const miVideo = document.getElementById('miVideo');
+    
+      // Función para desbloquear el sonido tras el primer clic
+      const desbloquearVideos = () => {
+        [videoAmanecer, miVideo].forEach(video => {
+          video.play().catch(err => {
+            console.log('Autoplay bloqueado hasta interacción:', err);
+          });
+        });
+        // Solo ejecutar una vez
+        document.removeEventListener('click', desbloquearVideos);
+      };
+    
+      // Esperar a que el usuario toque o haga clic
+      document.addEventListener('click', desbloquearVideos);
+    
+      // Observer para pausar/reproducir según visibilidad
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          const video = entry.target;
+          if (entry.isIntersecting) {
+            video.play().catch(err => {
+              console.log('Error al intentar reproducir:', err);
+            });
+          } else {
+            video.pause();
+          }
+        });
+      }, {
+        threshold: 0.5
+      });
+    
+      observer.observe(videoAmanecer);
+      observer.observe(miVideo);
+    </script>    
+  </section>  <section>
+    <h2 class="titulo animado">¡Ponle ritmo a la fiesta!</h2>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4oROqjxNSBrVxrcSaW77Mc?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  </section>  <section>
+    <p class="detalle animado">Este cumple no se celebra en casa... ¡se celebra en la DISCO!<br>Ven con tu mejor flow, luces, música, tragos y fiesta te esperan.</p>
+  </section> <section id="cuenta">
+    <div id="cuenta-regresiva">
+      <div class="contador">
+        <div id="dias">00</div>
+        <span class="etiqueta-tiempo">Días</span>
+      </div>
+      <div class="contador">
+        <div id="horas">00</div>
+        <span class="etiqueta-tiempo">Horas</span>
+      </div>
+      <div class="contador">
+        <div id="minutos">00</div>
+        <span class="etiqueta-tiempo">Minutos</span>
+      </div>
+      <div class="contador">
+        <div id="segundos">00</div>
+        <span class="etiqueta-tiempo">Segundos</span>
+      </div>
+    </div>
+  </section>  <section id="mapa">
+    <h2 class="titulo animado">Ubicación</h2>
+    <iframe class="mapa-embed animado" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3813.6676282822874!2d-67.109289!3d-17.964971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e30dcfb61ff9e7%3A0x7e0c0e4a3b8e91e3!2sSui%20Generis%2C%206%20de%20Octubre%2C%20Oruro%2C%20Bolivia!5e0!3m2!1ses!2sbo!4v1700000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <a class="boton" href="https://www.google.com/maps?q=Sui+Generis,+6+de+Octubre,+Oruro,+Bolivia" target="_blank">Ir directo al navegador</a>
+  </section>  <section id="final">
+    <p class="detalle animado">¡Te espero!</p>
+    <a class="boton" href="https://wa.me/59177159738?text=¡Voy%20a%20romperla%20en%20la%20disco,%20no%20me%20la%20pierdo!" target="_blank">Sí, podré ir</a>
+    <a class="boton" href="https://wa.me/59177159738?text=Gracias,%20pero%20me%20es%20imposible%20acompañarlos." target="_blank">No podré ir</a>
+    <a class="boton" id="boton-google-calendar" href="#" target="_blank">Poner recordatorio</a>
+
+<script>
+  document.getElementById('boton-google-calendar').addEventListener('click', function() {
+    const startDate = '20250503T230000Z'; // 3 de mayo 2025 a las 20:00 Bolivia es 23:00 UTC
+    const endDate = '20250504T040000Z';   // 4 de mayo 2025 a la 01:00 Bolivia es 04:00 UTC
+    const text = encodeURIComponent('Cumpleaños de Chanel 🎉');
+    const details = encodeURIComponent('¡Vamos a celebrar el cumple de Chanel en Sui Generis!');
+    const location = encodeURIComponent('Sui Generis, 6 de Octubre, Oruro, Bolivia');
+
+    const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=${text}&dates=${startDate}/${endDate}&details=${details}&location=${location}&trp=false`;
+
+    window.open(url, '_blank');
+  });
+</script>
+  </section>  <script>
+    const observador = new IntersectionObserver((entradas) => {
+      entradas.forEach(entrada => {
+        if (entrada.isIntersecting) {
+          entrada.target.classList.add('visible');
+        }
+      });
+    });
+    document.querySelectorAll('.animado').forEach(el => observador.observe(el));
+
+    const cuenta = new Date("2025-05-03T20:00:00").getTime();
+    setInterval(() => {
+      const ahora = new Date().getTime();
+      const distancia = cuenta - ahora;
+
+      const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+      document.getElementById("dias").textContent = dias.toString().padStart(2, '0');
+      document.getElementById("horas").textContent = horas.toString().padStart(2, '0');
+      document.getElementById("minutos").textContent = minutos.toString().padStart(2, '0');
+      document.getElementById("segundos").textContent = segundos.toString().padStart(2, '0');
+    }, 1000);
+  </script>
+  </body>
+</html>
